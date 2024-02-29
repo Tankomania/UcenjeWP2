@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IbanNet;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
@@ -16,6 +17,15 @@ namespace WebAPI.Controllers
             
             return Zbroji(PrviBroj,DrugiBroj);
             
+        }
+
+        [HttpGet]
+        [Route("iban")]
+        public bool provjeri(string iban)
+        {
+            return new IbanValidator().Validate(iban).IsValid;
+            
+
         }
 
         private int Zbroji(int prviBroj, int drugiBroj)
